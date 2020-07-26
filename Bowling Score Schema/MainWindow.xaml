@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bowling_Score_Schema"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Bowling Score Schema" Height="450" Width="800">
     <Grid>
-        
-    </Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="60"/>
+    </Grid.RowDefinitions>
+    <DataGrid Grid.Row="0" Name="DG1" Margin="10" ItemsSource="{Binding Path=ScoreViews}" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" >
+      <DataGrid.Resources>
+        <Style x:Key="CellCenter" TargetType="TextBlock">
+          <Setter Property="VerticalAlignment" Value="Center" />
+          <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+      </DataGrid.Resources>
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="GET (Token/Points)" Binding="{Binding Bowler}" />
+        <DataGridTextColumn Header="1." Binding="{Binding FrameView_01}"/>
+        <DataGridTextColumn Header="2." Binding="{Binding FrameView_02}"/>
+        <DataGridTextColumn Header="3." Binding="{Binding FrameView_03}"/>
+        <DataGridTextColumn Header="4." Binding="{Binding FrameView_04}"/>
+        <DataGridTextColumn Header="5." Binding="{Binding FrameView_05}"/>
+        <DataGridTextColumn Header="6." Binding="{Binding FrameView_06}"/>
+        <DataGridTextColumn Header="7." Binding="{Binding FrameView_07}"/>
+        <DataGridTextColumn Header="8." Binding="{Binding FrameView_08}"/>
+        <DataGridTextColumn Header="9." Binding="{Binding FrameView_09}"/>
+        <DataGridTextColumn Header="10." Binding="{Binding FrameView_10}"/>
+        <DataGridTextColumn Header="Bonus" Binding="{Binding FrameView_Bonus}"/>
+        <DataGridTextColumn Header="Total Score" Binding="{Binding Total}" ElementStyle="{StaticResource CellCenter}" FontSize="12" FontWeight="Bold"/>
+        <DataGridTextColumn Header="POST (Summaries/Result)" Binding="{Binding Comment}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+    <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+      <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
+        <Button Content="Add Bowler" Click="On_Add_Bowler" Width="80" Margin="10"/>
+        <Button Content="Clear" Click="On_Clear" Width="80" Margin="10,10,30,10"/>
+      </StackPanel>
+      <StatusBar Name="Status" Height="30" Background="LightGray">
+        <TextBlock Name="StatusBar"/>
+      </StatusBar>
+    </StackPanel>
+  </Grid>
 </Window>
