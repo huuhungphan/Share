@@ -4,7 +4,7 @@ The first repository to share <b>Bowling Score Schema</b> project:
     - Programming language: <b>C#/.NET Framework</b>
     - Design/architect: <b>standalone desktop application</b>
     - UI: <b>Windows WPF Framework</b>
-* Other required packages (see evt. "<b>Bowling Score Schema/packages.config</b>"):
+* Other required packages:
     - <b>Newtonsoft.Json</b>
     - <b>System.Net.Http</b>
     - <b>System.Net.Http.Formatting.Extension</b>
