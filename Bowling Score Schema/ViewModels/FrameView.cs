@@ -11,20 +11,34 @@ namespace Bowling_Score_Schema
     private IFrameScore frameScore;
     public int Score { get; private set; }
 
-    public FrameView(IFrameScore frame, int score)
+    public FrameView(List<IFrameScore> frames, Summaries summaries, int index)
     {
-      frameScore = frame;
-      Score = score;
+      frameScore = index < frames.Count ? frames[index] : null;
+      Score = index < summaries.Points.Length ? summaries.Points[index] : 0;
     }
 
-    public string First => frameScore.First == 10 ? "X" : frameScore.First.ToString("D");
-    public string Last => frameScore.First == 10 && frameScore.Last == 0 ? " " : frameScore.Total == 10 
-          ? "/" : frameScore.Last == 10 ? "X" : frameScore.Last.ToString("D");
+    private static string DisplayPoint(int value, int? prevValue = null)
+    {
+      if (value == 10)
+        return " X ";
+      else if (prevValue != default(int?) && value + prevValue == 10)
+        return value > 0 ? " / " : string.Empty;
+
+      return $" {value} ";
+    }
+
     public override string ToString()
     {
-      return frameScore.FrameNo <= 10
-        ? $"   {First}  {Last}{Environment.NewLine}{Score}"
-        : $"   {First}  {Last}";
+      int? prevValue = default(int?);
+      string result = frameScore.Points.Count < 3 ? "   " : string.Empty;
+      foreach (var point in frameScore.Points)
+      {
+        result += DisplayPoint(point, prevValue);
+        prevValue = point;
+      }
+
+      result += $"{Environment.NewLine}{Score}";
+      return result;
     }
   }
 }

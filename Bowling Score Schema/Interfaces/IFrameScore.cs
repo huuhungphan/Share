@@ -8,8 +8,8 @@ namespace Bowling_Score_Schema
 {
   public interface IFrameScore
   {
+    List<int> Points { get; }
     int First { get; }
-    int Last { get; }
     int Total { get; }
     int FrameNo { get; }
   }

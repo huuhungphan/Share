@@ -20,17 +20,16 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTextColumn Header="GET (Token/Points)" Binding="{Binding Bowler}" />
-        <DataGridTextColumn Header="1." Binding="{Binding FrameView_01}"/>
-        <DataGridTextColumn Header="2." Binding="{Binding FrameView_02}"/>
-        <DataGridTextColumn Header="3." Binding="{Binding FrameView_03}"/>
-        <DataGridTextColumn Header="4." Binding="{Binding FrameView_04}"/>
-        <DataGridTextColumn Header="5." Binding="{Binding FrameView_05}"/>
-        <DataGridTextColumn Header="6." Binding="{Binding FrameView_06}"/>
-        <DataGridTextColumn Header="7." Binding="{Binding FrameView_07}"/>
-        <DataGridTextColumn Header="8." Binding="{Binding FrameView_08}"/>
-        <DataGridTextColumn Header="9." Binding="{Binding FrameView_09}"/>
-        <DataGridTextColumn Header="10." Binding="{Binding FrameView_10}"/>
-        <DataGridTextColumn Header="Bonus" Binding="{Binding FrameView_Bonus}"/>
+        <DataGridTextColumn Header="1." Binding="{Binding FrameView_01}" MinWidth="45"/>
+        <DataGridTextColumn Header="2." Binding="{Binding FrameView_02}" MinWidth="45"/>
+        <DataGridTextColumn Header="3." Binding="{Binding FrameView_03}" MinWidth="45"/>
+        <DataGridTextColumn Header="4." Binding="{Binding FrameView_04}" MinWidth="45"/>
+        <DataGridTextColumn Header="5." Binding="{Binding FrameView_05}" MinWidth="45"/>
+        <DataGridTextColumn Header="6." Binding="{Binding FrameView_06}" MinWidth="45"/>
+        <DataGridTextColumn Header="7." Binding="{Binding FrameView_07}" MinWidth="45"/>
+        <DataGridTextColumn Header="8." Binding="{Binding FrameView_08}" MinWidth="45"/>
+        <DataGridTextColumn Header="9." Binding="{Binding FrameView_09}" MinWidth="45"/>
+        <DataGridTextColumn Header="10." Binding="{Binding FrameView_10}" MinWidth="45"/>
         <DataGridTextColumn Header="Total Score" Binding="{Binding Total}" ElementStyle="{StaticResource CellCenter}" FontSize="12" FontWeight="Bold"/>
         <DataGridTextColumn Header="POST (Summaries/Result)" Binding="{Binding Comment}"/>
       </DataGrid.Columns>

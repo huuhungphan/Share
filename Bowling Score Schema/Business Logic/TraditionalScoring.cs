@@ -15,7 +15,7 @@ namespace Bowling_Score_Schema
     /// </summary>
     /// <param name="scores"></param>
     /// <returns></returns>
-    public static Summaries GetSummaries(Scores scores)
+    public static Summaries GetSummaries(Scores scores, List<IFrameScore> frameScores = null)
     {
       int total = Math.Min(scores.Points.Count, MaxFrame);
       var result = new Summaries {
@@ -30,6 +30,8 @@ namespace Bowling_Score_Schema
           var score = new FrameScore(scores.Points.ElementAt(i), i);
           if (score != null)
           {
+            if (frameScores != null)
+              frameScores.Add(score);
             sum += score.Total;
 
             //Calculate Bonus if the current score is not the last one
@@ -38,8 +40,12 @@ namespace Bowling_Score_Schema
             if (i < scores.Points.Count - 1 &&
                 score.Total == 10)
             {
-              List<FrameScore> bonusFrames = GetBonusFrames(score, scores);
-              sum += FrameScore.TraditionalBonus(score, bonusFrames);
+              var bonusPoints = Scores.GetBonusPointsAtIndex(i, scores);
+              sum += FrameScore.TraditionalBonus(score, bonusPoints);
+              if (i == 9)
+              {
+                score.Points.AddRange(bonusPoints);
+              }
             }
           }
 
@@ -54,42 +60,6 @@ namespace Bowling_Score_Schema
       }
 
       return null;
-    }
-
-    /// <summary>
-    /// GetBonusFrames to be calculated from the current frame depends on
-    /// strike or pair scoring rules
-    /// </summary>
-    /// <param name="score"></param>
-    /// <param name="scores"></param>
-    /// <returns></returns>
-    private static List<FrameScore> GetBonusFrames(FrameScore score, Scores scores)
-    {
-      List<FrameScore> bonusFrames = new List<FrameScore>();
-      int nextIndex = score.FrameNo;
-      var bonusFrame = AddBonusFrame(scores, bonusFrames, nextIndex); //first bonus roll/frame
-      if (score.Strike && bonusFrame != null && bonusFrame.Strike) //second bonus roll in the second frame
-        AddBonusFrame(scores, bonusFrames, nextIndex + 1);
-
-      return bonusFrames;
-    }
-
-    /// <summary>
-    /// AddBonusFrame to collection "bonusFrames" at the index specified of the "nextIndex" 
-    /// taken from the serie of scoring points "scores"
-    /// </summary>
-    /// <param name="scores"></param>
-    /// <param name="bonusFrames"></param>
-    /// <param name="nextIndex"></param>
-    /// <returns></returns>
-    private static FrameScore AddBonusFrame(Scores scores, List<FrameScore> bonusFrames, int nextIndex)
-    {
-      if (nextIndex >= scores.Points.Count) //last has been reached
-        return null;
-
-      var bonusFrame = new FrameScore(scores.Points.ElementAt(nextIndex), nextIndex);
-      bonusFrames.Add(bonusFrame);
-      return bonusFrame;
     }
   }
 }
