@@ -13,4 +13,4 @@ The first repository to share <b>Bowling Score Schema</b> project:
 * VS2017 Solution file of <b>Bowling Score Schema</b> is located as "<b>Bowling Score Schema.sln</b>" at root directory <b>Share</b>.
 * <b>Release.zip</b> contains a prerelease package of binary files for evt. test without building first.
 * URL "http://13.74.31.101/api/points" is hardcoded and required being online to ensure any successful test.
-* "<b>Bowling Scoring System Design og Implementering.pdf</b>" er vedlagt som dokumentation for implementering af løsningen.
+* "<b>Bowling Scoring System Design og Implementering.pdf</b>" is published as documentation to this solution.
