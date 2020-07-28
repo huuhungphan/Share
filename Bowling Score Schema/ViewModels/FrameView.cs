@@ -9,7 +9,7 @@ namespace Bowling_Score_Schema
   public class FrameView
   {
     private IFrameScore frameScore;
-    public int Score { get; private set; }
+    public int Score { get; private set; } //Frame's Summary point
 
     public FrameView(List<IFrameScore> frames, Summaries summaries, int index)
     {

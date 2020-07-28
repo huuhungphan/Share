@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Bowling_Score_Schema
@@ -39,17 +35,26 @@ namespace Bowling_Score_Schema
     async public static Task<PostResponse> Post(string url, Summaries summaries)
     {
       PostResponse result = null;
-      using (HttpClient client = new HttpClient())
+      try
       {
-        using (var responseMessage = await client.PostAsJsonAsync(url, summaries))
+        using (HttpClient client = new HttpClient())
         {
-          result = new PostResponse { httpResponse = responseMessage };
-          using (var content = responseMessage.Content)
+          using (var responseMessage = await client.PostAsJsonAsync(url, summaries))
           {
-            var response = await content.ReadAsAsync<Response>();
-            result.contentResponse = response;
+            result = new PostResponse { httpResponse = responseMessage };
+            using (var content = responseMessage.Content)
+            {
+              var response = await content.ReadAsAsync<Response>();
+              result.contentResponse = response;
+            }
           }
         }
+      }
+      catch (Exception ex)
+      {
+        var baseException = ex.GetBaseException();
+        Console.WriteLine($"{baseException.GetType()}:\n\t{baseException.Message}" +
+          $"\n\tat\n\t{baseException.StackTrace}");
       }
 
       return result;

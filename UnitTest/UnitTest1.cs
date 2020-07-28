@@ -59,14 +59,16 @@ namespace UnitTest
       {
         Points = new List<List<int>> {
           new List<int> {7, 3 },
+          new List<int> {7, 2 },
           new List<int> {4, 2 } },
         Token = "Spare"
       };
 
       var summaries = TraditionalScoring.GetSummaries(scores);
       Assert.IsNotNull(summaries);
-      Assert.AreEqual(summaries.Points[0], 14);
-      Assert.AreEqual(summaries.Points[1], 20);
+      Assert.AreEqual(summaries.Points[0], 17);
+      Assert.AreEqual(summaries.Points[1], 26);
+      Assert.AreEqual(summaries.Points[2], 32);
     }
   }
 }
