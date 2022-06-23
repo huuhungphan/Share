@@ -109,7 +109,7 @@
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
-      <Version>2.0.20126.16343</Version>
+      <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http.Formatting.Extension">
       <Version>5.2.3</Version>
